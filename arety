@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Launcher for the Arety CLI (cli.py). Uses the project .venv if present, else ~/venv, else python3.
+HERE=$(cd "$(dirname "$(readlink -f "$0")")" && pwd)
+for PY in "$HERE/.venv/bin/python" "$HOME/venv/bin/python" python3; do
+  if command -v "$PY" >/dev/null 2>&1 || [ -x "$PY" ]; then exec "$PY" "$HERE/cli.py" "$@"; fi
+done
